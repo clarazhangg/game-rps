@@ -8,17 +8,21 @@
     <link rel="stylesheet" href="scss/index.css" />
   </head>
   <body>
-    <script src="app.js"></script>
-    <button type="button">PLAY</button>
-    <button id="rock-el">ROCK</button>
-    <button type="button">Paper</button>
-    <button type="button">Scissors</button>
+    <button type="button">PLAY agin</button>
+    <div class="options__container">
+      <button type="button" class="choice" id="rock-el">ROCK</button>
+      <button type="button" class="choice" id="paper-el">Paper</button>
+      <button type="button" class="choice" id="scissors-el">Scissors</button>
+    </div>
     <div class="display__score">
+      <p id="outcome-el"></p>
       <h3>Score</h3>
       <p>Player:</p>
+      <p id="playerScore-el"></p>
       <p></p>
       <p>Computer:</p>
-      <p></p>
+      <p id="computerScore-el"></p>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>

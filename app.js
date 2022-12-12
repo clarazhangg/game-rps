@@ -1,34 +1,52 @@
 let playerScore = 0;
 let computerScore = 0;
 
-const gameChoices = ["Rock", "Paper", "Scissors"];
+const rockEl = document.getElementById("rock-el");
+const paperEl = document.getElementById("paper-el");
+const scissorsEl = document.getElementById("scissors-el");
+
+const outcomeEl = document.getElementById("outcome-el");
+const playerScoreEl = document.getElementById("playerScore-el");
+const computerScoreEl = document.getElementById("computerScore-el");
 
 let getComputerChoice = () => {
+  const gameChoices = ["rock", "paper", "scissors"];
   let randomNum = Math.floor(Math.random() * gameChoices.length);
   return gameChoices[randomNum];
 };
 
-console.log(getComputerChoice());
-let computerSelection = getComputerChoice();
-
-let playRound = (playerSection, computerSelection) => {
-  if (playerSection === "rock" && computerSelection === "paper") {
-    return "you lose! Rock no no";
-  } else if (playerSection === "paper" && computerSelection === "scissors") {
-    return "you lose! Paper no no";
-  } else if (playerSection === "scissors" && computerSelection === "rock") {
-    return "you lose! scissors no no";
-  } else if (playerSection === computerSelection) {
-    return "its tie";
+function playRound(playerSection) {
+  let computerSelection = getComputerChoice();
+  if (playerSection === computerSelection) {
+    outcomeEl.innerHTML += "it's a tie";
+  } else if (
+    (playerSection === "rock" && computerSelection === "scissors") ||
+    (playerSection === "paper" && computerSelection === "rock") ||
+    (playerSection === "scissors" && computerSelection === "paper")
+  ) {
+    outcomeEl.innerHTML += "you won";
+    playerScore++;
+    playerScoreEl.textContent = `${playerScore}`;
   } else {
-    return "u won!";
+    outcomeEl.innerHTML += "you lose";
+    computerScore++;
+    computerScoreEl.textContent = `${computerScore}`;
   }
-};
+}
 
-// let computerSelection = getComputerChoice();
+rockEl.addEventListener("click", () => playRound("rock"));
+paperEl.addEventListener("click", () => playRound("paper"));
+scissorsEl.addEventListener("click", () => playRound("scissors"));
 
-const rockEl = document.getElementById("rock-el");
+// function hasLost() {
+//   if (playerScore === 5 || computerScore === 5) {
+//     restart(true);
+//   } else {
+//     restart(false);
+//   }
+// }
 
-rockEl.addEventListener("click", () => {
-  console.log("rock");
-});
+// function restart() {
+//   playerScore === 0;
+//   computerScore === 0;
+// }
